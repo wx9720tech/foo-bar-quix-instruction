@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { first } from "rxjs/operators";
 import { FooBarQuixService } from '../foo-bar-quix.service';
+import { TestCase } from '../model/test-case';
 
 @Component({
   selector: 'app-foo-bar-quix',
@@ -8,7 +9,10 @@ import { FooBarQuixService } from '../foo-bar-quix.service';
 })
 export class FooBarQuixComponent implements OnInit, OnDestroy {
 
-  constructor(private fooBarQuixService: FooBarQuixService) { }
+  public numberConvertedList: TestCase[] = [];
+
+  constructor(private fooBarQuixService: FooBarQuixService) {
+  }
 
   ngOnInit(): void {
   }
@@ -17,6 +21,20 @@ export class FooBarQuixComponent implements OnInit, OnDestroy {
   }
 
   convertNumber(inputNumber: number): void {
+    this.fooBarQuixService
+      .convertNumber(inputNumber)
+      .pipe(first())
+      .subscribe(
+        result => {
+          var newTestCase: TestCase = new TestCase();
+          newTestCase.input = inputNumber;
+          newTestCase.output = result.result;
+          this.numberConvertedList.push(newTestCase);
+        },
+        error => {
+          console.log("error when get the result of convertNumber");
+        }
+      );
   }
 
 }
