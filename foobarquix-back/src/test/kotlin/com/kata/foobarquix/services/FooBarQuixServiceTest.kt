@@ -14,11 +14,14 @@ internal class FooBarQuixServiceTest {
 
     @Test
     fun convertNumber() {
+        assertEquals("FooBarQuixBuzz", fooBarQuixService.convertNumber(0));
         assertEquals("1", fooBarQuixService.convertNumber(1));
         assertEquals("FooFoo", fooBarQuixService.convertNumber(3));
         assertEquals("BarBar", fooBarQuixService.convertNumber(5));
-        assertEquals("Quix", fooBarQuixService.convertNumber(7));
+        assertEquals("QuixQuix", fooBarQuixService.convertNumber(7));
         assertEquals("Foo", fooBarQuixService.convertNumber(9));
+        assertEquals("BarBuzz", fooBarQuixService.convertNumber(10));
+        assertEquals("Quix", fooBarQuixService.convertNumber(49));
         assertEquals("FooBar", fooBarQuixService.convertNumber(51));
         assertEquals("BarFoo", fooBarQuixService.convertNumber(53));
         assertEquals("FooFooFoo", fooBarQuixService.convertNumber(33));

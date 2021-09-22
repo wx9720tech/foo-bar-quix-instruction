@@ -13,6 +13,9 @@ class FooBarQuixService {
         if (inputNumber % 5 == 0) {
             result += "Bar";
         }
+        if (inputNumber % 7 == 0) {
+            result += "Quix"
+        }
 
         val inputNumberStr = inputNumber.toString();
         val inputNumberCharArray: CharArray = inputNumberStr.toCharArray();
@@ -25,6 +28,9 @@ class FooBarQuixService {
             }
             if (i == '7') {
                 result += "Quix";
+            }
+            if (i == '0') {
+                result += "Buzz";
             }
         }
 
